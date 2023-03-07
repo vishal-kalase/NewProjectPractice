@@ -4,8 +4,8 @@ import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.*;
 
 public class FlipkartWithPlayScript {
-  public static void main(String[] args) {
-    try (Playwright playwright = Playwright.create()) {
+  public static void main(String[] args) throws InterruptedException {
+    Playwright playwright = Playwright.create();
       Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
       BrowserContext context = browser.newContext();
       Page page = context.newPage();
@@ -18,6 +18,7 @@ public class FlipkartWithPlayScript {
       Page page1 = page.waitForPopup(() -> {
         page.locator("div:nth-child(6) > ._13oc-S > div:nth-child(3) > ._1xHGtK > ._2UzuFa").click();
       });
-    }
+//      playwright.wait(1000);
+//      playwright.close();
   }
 }
